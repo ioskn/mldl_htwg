@@ -1,2 +1,2 @@
 # mldl_htwg
-Machine and Deep Learning Lecture
+Code accompaning the Machine and Deep Learning Lectures
