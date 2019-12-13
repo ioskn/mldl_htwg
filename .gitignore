@@ -122,3 +122,5 @@ boosting/catboost_info/*
 *.tsv
 
 *.feather
+
+*.hdf5
