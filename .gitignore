@@ -124,3 +124,5 @@ boosting/catboost_info/*
 *.feather
 
 *.hdf5
+
+uebungen/01_Backpropagation in einfachen MLPs.ipynb
