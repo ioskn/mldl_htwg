@@ -126,3 +126,5 @@ boosting/catboost_info/*
 *.hdf5
 
 uebungen/01_Backpropagation in einfachen MLPs.ipynb
+
+rnns/Didactic_no_state
