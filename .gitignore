@@ -128,3 +128,5 @@ boosting/catboost_info/*
 uebungen/01_Backpropagation in einfachen MLPs.ipynb
 
 rnns/Didactic_no_state
+mldl_htwg/bin/*
+mldl_htwg/share/*
