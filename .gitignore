@@ -131,3 +131,4 @@ rnns/Didactic_no_state
 mldl_htwg/bin/*
 mldl_htwg/share/*
 *.DS_Store
+.DS_Store
