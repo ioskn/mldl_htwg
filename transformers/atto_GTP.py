@@ -3,7 +3,7 @@ import tensorflow as tf
 import numpy as np
 
 N_Token = 16 #
-m, H = 3, 2 
+m, H = 2, 2 
 
 B,T,C = 1, 5, m*H #Batch, Time, Channels
 data = np.array([[0,  3,  6,  9, 12, 15]]) #T+1 data points
@@ -18,21 +18,24 @@ embedding_matrix = tf.Variable(tf.random.normal([N_Token, C]))
 #tf.gather picks the rows of the embedding matrix corresponding to the input tokens
 x = tf.gather(embedding_matrix, T_input) #shape (B, T, C)
 print(np.round(x[0].numpy().T, 2))
+x = LayerNormalization()(x) 
 
 ### Attention Layer calculation of the weight matix W
-wk = tf.random.normal(shape=(H, T, m)) #The weights for the key
-K = tf.einsum('btc, htm -> bhtm', x, wk) # Transformation in the B, H, T, m 
+## We first go into the space where the attention is calculated (comparison between the query and the key)) 
+wk = tf.random.normal(shape=(H, C, m))   # The weights for the key
+K = tf.einsum('btc, hcm -> bhtm', x, wk) # Transformation in the B, H, T, m 
+print("K, Q, V")
 print(np.round(K[0,0].numpy().T, 2))
 
-wq = tf.random.normal(shape=(H, T, m))
-Q = tf.einsum('btc, htm -> bhtm', x, wq) 
+wq = tf.random.normal(shape=(H, C, m))
+Q = tf.einsum('btc, hcm -> bhtm', x, wq) 
 print(np.round(Q[0,0].numpy().T, 2))
 
-wV = tf.random.normal(shape=(H, T, m))
-V = tf.einsum('btc, htm -> bhtm', x, wV) 
+wV = tf.random.normal(shape=(H, C, m))
+V = tf.einsum('btc, hcm -> bhtm', x, wV) 
 print(np.round(V[0,0].numpy().T, 2))
 
-W = tf.einsum('bhtd, bhmd -> bhtm', Q, K) # B, H, T, T
+W = tf.einsum('bhtd, bhTd -> bhtT', Q, K) # B, H, T, T
 
 #Normalization
 W = W / tf.sqrt(1.0*m)
