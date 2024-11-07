@@ -134,3 +134,10 @@ mldl_htwg/share/*
 .DS_Store
 tmp/*
 .DS_Store
+*.snm
+*.nav
+*.fls
+*.fdb_latexmk
+*.aux
+*.toc
+Latex/Derivation-Hat-Matrix.out
