@@ -141,3 +141,4 @@ tmp/*
 *.aux
 *.toc
 Latex/Derivation-Hat-Matrix.out
+*.out
