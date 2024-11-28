@@ -142,3 +142,4 @@ tmp/*
 *.toc
 Latex/Derivation-Hat-Matrix.out
 *.out
+boosting/Latex/.Rhistory
