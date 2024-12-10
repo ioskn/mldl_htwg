@@ -143,3 +143,8 @@ tmp/*
 Latex/Derivation-Hat-Matrix.out
 *.out
 boosting/Latex/.Rhistory
+*.1
+*.2
+*.3
+*.4
+*.5
