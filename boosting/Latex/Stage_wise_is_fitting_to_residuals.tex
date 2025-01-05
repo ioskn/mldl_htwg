@@ -1,0 +1,77 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\begin{document}
+
+% Slide 1: Fitting the Residuals
+\begin{frame}{Fitting the Residuals}
+    \begin{eqnarray}
+        (\beta_m, \gamma_m) &=& \arg\min_{\beta, \gamma} \sum_{i=1}^N L\Big( y_i , f_{m-1}(x_i) + \beta b(x_i; \gamma)\Big) \nonumber \\
+        (\beta_m, \gamma_m) &=& \arg\min_{\beta, \gamma} \sum_{i=1}^N \Big( \underbrace{y_i - f_{m-1}(x_i)}_{\text{Residual} r_i} - \beta b(x_i; \gamma)\Big)^2 \nonumber \\
+        (\beta_m, \gamma_m) &=& \arg\min_{\beta, \gamma} \sum_{i=1}^N \Big( r_i - \beta b(x_i; \gamma)\Big)^2 
+    \end{eqnarray}
+    This corresponds to fitting the "delta" model / weak learner to the residuals $r_i$ between the observed values and the current model.
+\end{frame}
+
+% Slide 2: Generalization to Other Losses
+\begin{frame}{Generalization to Other Losses}
+    \textbf{Residuals and Loss Functions:}
+    \begin{itemize}
+        \item For the \textbf{Mean Squared Error (MSE)}, residuals are the difference between observed and predicted values:
+        \[
+        r_i = y_i - f_{m-1}(x_i)
+        \]
+        \item For a general loss function \(L(y, f(x))\), residuals are replaced by \textbf{pseudo-residuals}, defined as:
+        \[
+        r_i = -\frac{\partial L(y_i, f_{m-1}(x_i))}{\partial f_{m-1}(x_i)}
+        \]
+    \end{itemize}
+   
+    For the MSE $L = 1/2 (y - f_{m-1}(x))^2$, the pseudo-residuals are the residuals themselves.
+    
+    \textbf{Key Idea:}
+    \begin{itemize}
+        \item Instead of fitting to standard residuals, the model minimizes the **pseudo-residuals** derived from the gradient of the loss function.
+        \item This allows Gradient Boosting to handle various loss functions, making it adaptable to different problems.
+    \end{itemize}
+    
+\end{frame}
+
+% Slide 3: Example - Logistic Loss
+\begin{frame}{Example: Logistic Loss for Classification}
+    The logistic loss is given by:
+    \[ 
+    L(y, f(x)) = \log(1 + e^{-y f(x)})
+    \]
+    Its gradient (pseudo-residual) is:
+    \[
+    r_i = -\frac{\partial L(y_i, f_{m-1}(x_i))}{\partial f_{m-1}(x_i)} = \frac{-y_i}{1 + e^{y_i f_{m-1}(x_i)}}
+    \]
+    \begin{itemize}
+        \item The algorithm fits the base learner to these pseudo-residuals at each stage.
+        \item This allows for iterative improvement of the classification model.
+    \end{itemize}
+\end{frame}
+
+% Slide 4: General Framework for Boosting
+\begin{frame}{General Framework for Boosting}
+    The boosting framework can be summarized as:
+    \begin{enumerate}
+        \item Compute pseudo-residuals:
+        \[
+        r_i = -\frac{\partial L(y_i, f_{m-1}(x_i))}{\partial f_{m-1}(x_i)}
+        \]
+        \item Fit the base learner to the pseudo-residuals:
+        \[
+        (\beta_m, \gamma_m) = \arg\min_{\beta, \gamma} \sum_{i=1}^N \Big( r_i - \beta b(x_i; \gamma) \Big)^2
+        \]
+        \item Update the model:
+        \[
+        f_m(x) = f_{m-1}(x) + \beta_m b(x; \gamma_m)
+        \]
+    \end{enumerate}
+    This framework applies to a variety of loss functions, making boosting a versatile method.
+\end{frame}
+
+\end{document}
