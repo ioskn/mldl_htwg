@@ -1,0 +1,7 @@
+digraph {
+	D [label="$D$"]
+	NN [label="$\text{NN}$" color=darkblue penwidth=2 shape=box style=rounded]
+	p [label="$p(\theta | D)$"]
+	D -> NN [label="$\text{input}$" color=darkblue]
+	NN -> p [label="$\text{output}$" color=darkblue]
+}

@@ -149,3 +149,4 @@ boosting/Latex/.Rhistory
 *.4
 *.5
 *.npy
+generative/flow_matching/gaussian_model

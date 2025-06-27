@@ -1,0 +1,11 @@
+digraph {
+	graph [dpi=300]
+	rankdir=LR
+	node [color=darkblue penwidth=2 shape=box style=rounded]
+	NN [label=NN shape=box style=rounded]
+	node [shape=plaintext]
+	D [label=D]
+	p [label=<p(&theta;|D)>]
+	D -> NN [label="" color=darkblue]
+	NN -> p [label="" color=darkblue]
+}

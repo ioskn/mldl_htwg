@@ -1,0 +1,11 @@
+digraph {
+	graph [dpi=300]
+	node [color=darkblue penwidth=2 shape=box style=rounded]
+	NN [label=NN shape=box style=rounded]
+	node [shape=plaintext]
+	x [label=x]
+	p [label="p(y|x)"]
+	x -> NN [label="" color=darkblue]
+	NN -> p [label="" color=darkblue]
+	rankdir=LR
+}
