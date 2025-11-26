@@ -61,37 +61,7 @@ import keras
 
 ## 3. Platform-specific instructions
 
-The exact installation commands for PyTorch and JAX depend on your
-platform, especially if you want GPU/MPS acceleration.
-
-### 3.1 Apple Silicon (M1/M2/M3) -- PyTorch + MPS and JAX + Metal
-
-#### Install PyTorch with MPS (Metal) support
-
-Use the PyTorch CPU wheel index, which includes MPS on Apple Silicon:
-
-``` bash
-uv pip install torch torchvision torchaudio   --index-url https://download.pytorch.org/whl/cpu
-```
-
-*(Even though the index says `cpu`, these wheels contain the Metal/MPS
-backend for Apple Silicon.)*
-
-#### Install JAX with Metal support
-
-On Apple Silicon, use the `jax-metal` plugin:
-
-``` bash
-uv pip install jax-metal
-```
-
-------------------------------------------------------------------------
-
-### 3.2 Other platforms (Linux, Windows, Intel Mac)
-
 #### PyTorch (CPU-only, generic)
-
-If you are **not** on Apple Silicon, a generic CPU install is:
 
 ``` bash
 uv pip install torch torchvision torchaudio
